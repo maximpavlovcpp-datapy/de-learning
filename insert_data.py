@@ -12,7 +12,7 @@ def insert_students():
             age = 20 + i
             
             # Выполняем SQL-запрос на вставку
-            # text() нужен для безопасной передачи параметров (защита от SQL-инъекций)
+            # text() нужен для py6 передачи параметров (защита от SQL-инъекций)
             conn.execute(
                 text("INSERT INTO students (name, age) VALUES (:name, :age)"),
                 {"name": name, "age": age}
