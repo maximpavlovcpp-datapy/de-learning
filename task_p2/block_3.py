@@ -51,9 +51,14 @@ def task_2_3():
         for i in range(0, len(items), size):
             yield items[i:i+size]
     print(list(chunked([1,2,3,4,5,6,7], 3)))
-print(task_2_3())
-
-
-
-
+def task_2_4():
+    def infinite_counter():
+        start=0
+        while True:
+            yield start
+            start+=1
+    gen=infinite_counter()
+    for n in range(9):
+        print(next(gen))
+print(task_2_4())
     
