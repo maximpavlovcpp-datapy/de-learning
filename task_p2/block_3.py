@@ -39,16 +39,21 @@ def task_2_1():
                 yield line
     for line in read_log_lines(logs):
         print(line)
-print(task_2_1())
 def task_2_2():
     def fibonacci(n):
         a, b= 0, 1
         for _ in range(n):
             yield a
             a, b = b, a + b
-    print(list(fibonacci(8)))                       
-print(task_2_2())
-   
+    print(list(fibonacci(8)))                     
+def task_2_3():
+    def chunked(items, size):
+        for i in range(0, len(items), size):
+            yield items[i:i+size]
+    print(list(chunked([1,2,3,4,5,6,7], 3)))
+print(task_2_3())
+
+
 
 
     
