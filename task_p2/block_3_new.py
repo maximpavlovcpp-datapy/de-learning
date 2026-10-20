@@ -1,4 +1,4 @@
-#1
+#1.@wraps
 from functools import wraps
 
 def log_call(func):
@@ -16,7 +16,7 @@ def multiply(a, b):
 #print("Имя функции:", multiply.__name__)
 #print("Документация:", multiply.__doc__)
 #print("Результат:", multiply(3, 4))
-#2
+#2.num_times
 from functools import wraps
 
 def repeat(num_times):
@@ -37,4 +37,27 @@ def greet(name):
     return "ok"
 
 res = greet("Алексей")
+#print("Результат:", res)
+#3.Timer
+import time
+from functools import wraps
+
+def timer(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start_time=time.perf_counter()
+        res=func(*args, **kwargs)
+        end_time=time.perf_counter()
+        dif_time=end_time-start_time
+        print(f"Функция {func.__name__} выполнилась за {dif_time:.4f} сек")
+        return res
+    return wrapper
+
+@timer
+def slow_task():
+    """Имитирует долгую задачу."""
+    time.sleep(0.1)
+    return "готово"
+
+res = slow_task()
 print("Результат:", res)
