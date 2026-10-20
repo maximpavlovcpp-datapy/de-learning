@@ -60,5 +60,58 @@ def task_2_4():
     gen=infinite_counter()
     for n in range(9):
         print(next(gen))
-print(task_2_4())
+# === Упражнение 1: Декоратор без @ ===
+
+# 1. Это наша оригинальная функция
+def say_hello(name):
+    """Функция приветствия"""
+    print(f"Привет, {name}!")
+
+# 2. Это наш декоратор (пока просто обертка)
+def my_decorator(func):
+    def wrapper(*args, **kwargs):
+        print("--- Начало работы ---")
+        func(*args, **kwargs)       # Вызываем оригинал
+        print("--- Конец работы ---")
+    return wrapper
+
+# 3. А теперь ВРУЧНУЮ применяем декоратор:
+# Мы передаем функцию say_hello внутрь my_decorator
+# и перезаписываем имя say_hello результатом
+say_hello = my_decorator(say_hello)
+
+# 4. Вызываем
+say_hello("Максим")
+#example 2: decotator with @
+def my_decorator(func):
+    def wrapper(*args, **kwargs):
+        print("--- Начало работы ---")
+        func(*args, **kwargs)       # Вызываем оригинал
+        print("--- Конец работы ---")
+    return wrapper
+# magic with @
+@my_decorator
+def say_hello(name):    
+    """Функция приветствия"""
+    print(f"Привет, {name}!")   
+#call 
+say_hello("Максим")
+# === Задача 3.1: Декоратор log_call===
+def log_call(func):
+    def wrapper(*args, **kwargs):
+        print(f"call: {func.__name__}")
+        result=func(*args, **kwargs)
+        print("ready!")
+        return result
+    return wrapper
+@log_call
+def add(a, b):
+    return a + b
+print(add(2, 3))
+
+
+
+
+
+
     
