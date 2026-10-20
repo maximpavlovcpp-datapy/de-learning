@@ -108,6 +108,8 @@ def log_call(func):
 def add(a, b):
     return a + b
 print(add(2, 3))
+print(add.__name__)
+
 
 
 
